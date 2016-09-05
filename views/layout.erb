@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Contact List</title>
+    <link rel="stylesheet" href="/contact_list.css" charset="utf-8">
+  </head>
+  <body>
+    <% unless session[:errors].empty? %>
+        <h3><%= session.delete(:errors) %></h3>
+    <% end %>
+    <%== yield %>
+  </body>
+</html>

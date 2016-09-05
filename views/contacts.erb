@@ -1,0 +1,30 @@
+<h1>Contacts</h1>
+<h3><a href="/new_contact">New Contact</a></h3>
+<%= @contacts %>
+
+<% unless @contacts.nil? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Friend</th>
+        <th>Family</th>
+        <th>Work</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= contact[:name] %> </td>
+        <td><%= contact[:phone] %> </td>
+        <td><%= contact[:email] %> </td>
+        <td><%= contact[:friend] %> </td>
+        <td><%= contact[:family] %> </td>
+        <td><%= contact[:work] %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

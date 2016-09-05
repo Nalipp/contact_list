@@ -1,0 +1,10 @@
+<h2>New contact</h2>
+<form action="/new_contact" method="post">
+  <input class="form" type="text" name="name" placeholder="name" value="<%= @name %>"></br>
+  <input class="form" type="text" name="phone" placeholder="phone" value="<%= @phone %>"></br>
+  <input class="form" type="text" name="email" placeholder="email" value="<%= @email %>"></br>
+  <input class="form" type="checkbox" name="friend">friend</br>
+  <input class="form" type="checkbox" name="family">family</br>
+  <input class="form" type="checkbox" name="work">work</br>
+  <button type="submit">submit</button>
+</form>
