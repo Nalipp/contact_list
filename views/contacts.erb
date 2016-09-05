@@ -1,6 +1,12 @@
 <h1>Contacts</h1>
 <h3><a href="/new_contact">New Contact</a></h3>
-<%= @contacts %>
+
+<form action="/contacts" method="post">
+  <button type="submit" name="all">all</button>
+  <button type="submit" name="friend">friends</button>
+  <button type="submit" name="family">family</button>
+  <button type="submit" name="work">work</button>
+</form>
 
 <% unless @contacts.nil? %>
   <table>
@@ -9,20 +15,22 @@
         <th>Name</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>Friend</th>
-        <th>Family</th>
-        <th>Work</th>
+        <th>Type</th>
       </tr>
     </thead>
     <tbody>
       <% @contacts.each do |contact| %>
       <tr>
-        <td><%= contact[:name] %> </td>
-        <td><%= contact[:phone] %> </td>
-        <td><%= contact[:email] %> </td>
-        <td><%= contact[:friend] %> </td>
-        <td><%= contact[:family] %> </td>
-        <td><%= contact[:work] %> </td>
+        <td><%= contact[:name] %></td>
+        <td><%= contact[:phone] %></td>
+        <td><%= contact[:email] %></td>
+        <% if contact[:friend] == 'on' %>
+          <td>friend</td>
+        <% elsif contact[:family] == 'on' %>
+          <td>family</td>
+        <% elsif contact[:work] == 'on' %>
+          <td>work</td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

@@ -1,3 +1,5 @@
+require 'pry'
+
 require 'sinatra'
 require 'sinatra/reloader'
 require 'tilt/erubis'
@@ -42,6 +44,11 @@ def value_missing_validation?
   errors.empty? ? false : errors
 end
 
+def find_by(value)
+  return session[:contacts] if value == "all"
+  session[:contacts].select { |contact| contact["#{value}".to_sym] == "on" }
+end
+
 post '/new_contact' do
  @name = params[:name]
  @phone = params[:phone]
@@ -60,4 +67,9 @@ post '/new_contact' do
    session[:contacts] << { name: @name, phone: @phone, email: @email, friend: @friend, family: @family, work: @work }
    redirect '/contacts'
  end
+end
+
+post '/contacts' do
+  @contacts = find_by(params.keys.first.to_s)
+  erb :contacts
 end
